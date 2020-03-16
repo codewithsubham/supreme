@@ -35,7 +35,7 @@ advance_main_menu () {
         set_theme
     elif [ $menu == "r" ] || [ $menu == "R"]
     then    
-        reboot
+        Reboot
     else
         advance_main_menu
     fi        
@@ -69,7 +69,10 @@ install_app () {
     echo $returnValue
 }
 
+set_theme () {
 
+    # code to set thee
+}
 #controller code
 
 if [ $PERSON == 1 ]
@@ -79,5 +82,3 @@ elif [ $PERSON == 2 ]
 then
     Advance
 fi
-
-
