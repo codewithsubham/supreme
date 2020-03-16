@@ -7,8 +7,7 @@ read PERSON
 Advance () {
 
     echo "advance"
-    Install_app
-    
+    advance_main_menu
 }
 
 
@@ -20,6 +19,26 @@ Reboot () {
 
     echo "hell"
     #reboot
+}
+
+advance_main_menu () {
+    echo "To install apps press 1  , to set theme press 2 , to reboot press R"
+    read menu
+    if [ -z "$menu" ]
+    then
+        main_menu
+    elif [ $menu == 1 ]
+    then
+        install_app
+    elif [ $menu == 2 ]
+    then
+        set_theme
+    elif [ $menu == "r" ] || [ $menu == "R"]
+    then    
+        reboot
+    else
+        advance_main_menu
+    fi        
 }
 
 # advance function subMenu fucntion definations
@@ -41,7 +60,7 @@ message_promt () {
     fi
 }
 
-Install_app () {
+install_app () {
     message_promt "app1"
     message_promt "app2"
     message_promt "app3"
