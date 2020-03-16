@@ -1,7 +1,3 @@
-echo "Welcome" 
-echo "Press for 1 for auto setup and 2 for advance setup and r for reboot"
-read PERSON
-
 
 # function declarations
 Advance () {
@@ -12,30 +8,37 @@ Advance () {
 
 
 Auto () {
-    echo "auto"
+    echo "Auto completing task"
+    main_menu
 }
 
 Reboot () {
-
-    echo "hell"
+    
+    sudo reboot now
     #reboot
 }
 
 advance_main_menu () {
-    echo "To install apps press 1  , to set theme press 2 , to reboot press R"
+    echo "To install apps press 1  , to set theme press 2 , 3 to fix_google_services , M to return to main menu to reboot press R"
     read menu
     if [ -z "$menu" ]
     then
-        main_menu
+        advance_main_menu
     elif [ $menu == 1 ]
     then
         install_app
     elif [ $menu == 2 ]
     then
         set_theme
-    elif [ $menu == "r" ] || [ $menu == "R"]
+    elif [ $menu == 3 ]
+    then
+        fix_google_services    
+    elif [ $menu == "r" ] || [ $menu == "R" ]
     then    
         Reboot
+    elif [ $menu == "m" ] || [ $menu == "M" ]
+    then
+        main_menu
     else
         advance_main_menu
     fi        
@@ -65,20 +68,47 @@ install_app () {
     message_promt "app2"
     message_promt "app3"
     message_promt "app4"
+
+  
     
-    echo $returnValue
+   advance_main_menu
 }
 
 set_theme () {
 
+    echo "setting theme"
+
+    advance_main_menu
     # code to set thee
 }
+
+fix_google_services () {
+    # code to fix_google_services
+    echo "fixing google services"
+    advance_main_menu
+}
+
 #controller code
 
-if [ $PERSON == 1 ]
-then
-    Auto
-elif [ $PERSON == 2 ]
-then
-    Advance
-fi
+main_menu() {
+    echo "MAIN MENU"
+    echo "Press for 1 for auto setup and 2 for advance setup and r to reboot"
+    read PERSON
+
+    if [ $PERSON == 1 ]
+    then
+        Auto
+    elif [ $PERSON == "r" ] || [ $PERSON == "R" ]
+    then    
+        Reboot    
+    elif [ $PERSON == 2 ]
+    then
+        Advance
+    fi
+
+}
+
+main_menu
+
+
+
